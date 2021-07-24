@@ -1,38 +1,63 @@
 package guru.springframework.spring5webapp.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+
+
 
 @Entity
 public class Publisher {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String name;
-    private String address;
+    private String addressLine1;
     private String city;
     private String state;
     private String zip;
-    @GeneratedValue(strategy= GenerationType.AUTO)//This property will be managed by the database, database will assign the id
-    private Long id;
-//    @OneToMany
-//    @JoinTable(name="book_publisher",joinColumns=@JoinColumn(name="publisher_id"),
-//            inverseJoinColumns=@JoinColumn(name="book_id"))
-//    private Set<Book> books=new HashSet<>();
 
-    public Publisher(String name) {
-        this.name = name;
-    }
     public Publisher() {
-
     }
 
-//    public Set<Book> getBooks() {
-//        return books;
-//    }
-//
-//    public void setBooks(Set<Book> books) {
-//        this.books = books;
-//    }
+    @Override
+    public String toString() {
+        return "Publisher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", addressLine1='" + addressLine1 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Publisher publisher = (Publisher) o;
+
+        return id != null ? id.equals(publisher.id) : publisher.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -42,12 +67,12 @@ public class Publisher {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddressLine1() {
+        return addressLine1;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
     }
 
     public String getCity() {
@@ -72,43 +97,5 @@ public class Publisher {
 
     public void setZip(String zip) {
         this.zip = zip;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Id
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        Publisher publisher = (Publisher) o;
-
-        return id != null ? id.equals(publisher.id) : publisher.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
-
-    @Override
-    public String toString() {
-        return "Publisher{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zip='" + zip + '\'' +
-                ", id=" + id +
-                '}';
     }
 }
