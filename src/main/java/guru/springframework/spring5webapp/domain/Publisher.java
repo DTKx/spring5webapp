@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Entity
 public class Publisher {
 
@@ -22,7 +21,6 @@ public class Publisher {
     @JoinColumn(name="publisher_id")//Hibernate to add a publisher ID to the book record to track
     // the publisher so thats going to create a foreign key relationship
     private Set<Book> books=new HashSet<>();
-
     public Publisher() {
     }
 

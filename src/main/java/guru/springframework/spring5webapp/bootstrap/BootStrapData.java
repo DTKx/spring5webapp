@@ -9,9 +9,6 @@ import guru.springframework.spring5webapp.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-
-
-
 @Component
 public class BootStrapData implements CommandLineRunner {
 
@@ -26,7 +23,7 @@ public class BootStrapData implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         System.out.println("Started in Bootstrap");
 
@@ -55,6 +52,7 @@ public class BootStrapData implements CommandLineRunner {
         Book noEJB = new Book("J2EE Development without EJB", "3939459459");
         rod.getBooks().add(noEJB);
         noEJB.getAuthors().add(rod);
+        noEJB.setPublisher(publisher);
         publisher.getBooks().add(noEJB);
 
         authorRepository.save(rod);
